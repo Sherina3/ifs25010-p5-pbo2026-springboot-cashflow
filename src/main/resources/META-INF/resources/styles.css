@@ -1,0 +1,230 @@
+/* ===== Cashflow - gaya kustom (di atas tema Lumo) ===== */
+
+html {
+    --cashflow-primary: #2563EB;
+    --cashflow-footer-bg: #F3F4F6;
+}
+
+/* ---- Kursor pointer pada semua kontrol interaktif ---- */
+vaadin-button,
+vaadin-menu-bar-item,
+vaadin-menu-bar-button,
+vaadin-context-menu-item,
+vaadin-tab,
+vaadin-tabs::part(tab),
+vaadin-drawer-toggle,
+vaadin-upload-file::part(remove-button),
+vaadin-side-nav-item,
+vaadin-side-nav-item::part(link),
+vaadin-grid-sorter,
+vaadin-combo-box::part(toggle-button),
+vaadin-combo-box::part(clear-button),
+vaadin-text-field::part(clear-button),
+vaadin-avatar,
+a,
+a[router-link] {
+    cursor: pointer;
+}
+
+vaadin-button[disabled],
+vaadin-drawer-toggle[disabled],
+vaadin-menu-bar-button[disabled] {
+    cursor: not-allowed;
+}
+
+/* ---- Indikator loading global (bar bercahaya di atas layar) ---- */
+.v-loading-indicator {
+    position: fixed;
+    z-index: 2147483647;
+    top: 0;
+    left: 0;
+    right: auto;
+    width: 40%;
+    height: 4px;
+    opacity: 1;
+    pointer-events: none;
+    background: linear-gradient(90deg, rgba(37, 99, 235, 0), #2563EB, #60A5FA);
+    box-shadow: 0 0 10px #2563EB, 0 0 4px #60A5FA;
+    animation: cashflow-loading 1.1s ease-in-out infinite;
+}
+
+.v-loading-indicator[style*="display: none"] {
+    display: none;
+}
+
+.v-loading-indicator.second {
+    width: 70%;
+}
+
+.v-loading-indicator.third {
+    width: 100%;
+    animation-duration: 0.8s;
+}
+
+@keyframes cashflow-loading {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(260%); }
+}
+
+/* ---- Halaman login / register ---- */
+.auth-card {
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    padding: 1.75rem;
+    background: #fff;
+    border: 1px solid #E5E7EB;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.auth-card h2 {
+    margin: 0;
+    color: var(--cashflow-primary);
+}
+
+.auth-card p {
+    margin: 0 0 0.5rem 0;
+    color: #6B7280;
+}
+
+/* ---- Layout aplikasi ---- */
+.app-header {
+    padding: 0 1rem;
+}
+
+.app-title {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--cashflow-primary);
+}
+
+.app-drawer {
+    padding: 0.75rem;
+}
+
+.app-user-identity {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    line-height: 1.2;
+}
+
+.app-user-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.app-user-role {
+    font-size: 0.75rem;
+    color: #6B7280;
+}
+
+/* ---- Kartu halaman & ringkasan ---- */
+.page-card {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1.25rem;
+    background: #fff;
+    border: 1px solid #E5E7EB;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.page-card-title {
+    margin: 0 0 0.75rem 0;
+}
+
+.summary-row {
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+.summary-card {
+    flex: 1 1 200px;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 1rem 1.1rem;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    border-left-width: 6px;
+}
+
+.summary-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.summary-value {
+    display: block;
+    margin-top: 0.3rem;
+    font-size: 1.45rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.summary-blue  { background: #DBEAFE; border-color: #2563EB; color: #1E3A8A; }
+.summary-green { background: #DCFCE7; border-color: #16A34A; color: #166534; }
+.summary-red   { background: #FEE2E2; border-color: #DC2626; color: #991B1B; }
+.summary-amber { background: #FEF3C7; border-color: #D97706; color: #92400E; }
+
+.amount-income  { color: #16A34A; font-weight: 600; }
+.amount-expense { color: #DC2626; font-weight: 600; }
+
+.toolbar {
+    flex-wrap: wrap;
+    align-items: end;
+}
+
+.proof-thumbnail {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #E5E7EB;
+    cursor: zoom-in;
+}
+
+.cashflow-grid {
+    margin-top: 0.5rem;
+}
+
+.dialog-message {
+    margin: 0;
+}
+
+/* ---- Dialog modal: header primer, footer abu-abu, tombol di kanan ---- */
+.cashflow-dialog::part(header) {
+    background: var(--cashflow-primary);
+    color: #fff;
+}
+
+.cashflow-dialog::part(title),
+.cashflow-dialog [slot="title"] {
+    color: #fff;
+}
+
+.cashflow-dialog::part(footer) {
+    background: var(--cashflow-footer-bg);
+    border-top: 1px solid #D1D5DB;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+/* ---- Preview gambar (zoom) ---- */
+.preview-viewport {
+    max-height: 65vh;
+    overflow: auto;
+    text-align: center;
+}
+
+.preview-image {
+    max-width: none;
+    height: auto;
+    border-radius: 8px;
+    transition: width 0.15s ease;
+}
